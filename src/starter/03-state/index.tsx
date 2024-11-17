@@ -6,7 +6,7 @@ type Link = {
   text: string;
 };
 
-const navLinks = [
+const navLinks: Link[] = [
   {
     id: 1,
     url: "/",
@@ -27,7 +27,7 @@ const navLinks = [
 function Component() {
   const [text, setText] = useState("string");
   const [list, setList] = useState<string[]>([]);
-  const [links, setLinks] = useState<Link[]>(navLinks);
+  const [links, setLinks] = useState(navLinks);
   return (
     <div>
       <h2>React & Typescript</h2>
