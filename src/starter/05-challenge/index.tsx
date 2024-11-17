@@ -1,27 +1,35 @@
-type Input = {
-  type: string;
+type BasicInput = {
+  type: "basic";
   name: string;
-  email?: string;
+};
+type AdvancedInput = {
+  type: "advanced";
+  name: string;
+  email: string;
 };
 
-function Component({ name, email, type }: Input) {
+type Input = BasicInput | AdvancedInput;
+
+function Component(props: Input) {
+  const { type, name } = props;
+
+  if (type === "basic") {
+    return (
+      <div>
+        <h2>user: {name}</h2>
+      </div>
+    );
+  }
+
   return (
-    <div>
-      {type == "basic" ? (
-        <div>
-          <p>{name}</p>
-          <p>{email}</p>
-        </div>
-      ) : (
-        <div
-          style={{
-            backgroundColor: "red",
-          }}
-        >
-          <p>{name}</p>
-          <p>{email}</p>
-        </div>
-      )}
+    <div
+      style={{
+        backgroundColor: "blue",
+        color: "white",
+      }}
+    >
+      <h2>user: {name}</h2>
+      <h2>email: {props.email}</h2>
     </div>
   );
 }
